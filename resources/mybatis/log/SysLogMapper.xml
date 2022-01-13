@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.log.SysLogMapper">
+
+    <resultMap id="Base_Map" type="com.baosight.base.entity.SysLog">
+        <result column="id" property="id"/>
+        <result column="description" property="description"/>
+        <result column="log_type" property="logType"/>
+        <result column="request_ip" property="requestIp"/>
+        <result column="method" property="method"/>
+        <result column="params" property="params"/>
+        <result column="exception_code" property="exceptionCode"/>
+        <result column="exception_detail" property="exceptionDetail"/>
+        <result column="create_user" property="createUser"/>
+        <result column="create_date" property="createDate"/>
+    </resultMap>
+
+    <sql id="Base_Column">
+        id,description,log_type,request_ip,method,params,exception_code,exception_detail,create_user,create_date
+    </sql>
+
+    <sql id="table">
+        sys_log
+    </sql>
+
+    <!--查询设备列表-->
+    <select id="selectPageList" resultMap="Base_Map">
+        SELECT
+        <include refid="Base_Column"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description}
+            </if>
+            <if test="logType != null and logType != ''">
+                log_type = #{logType}
+            </if>
+            <if test="requestIp != null and requestIp != ''">
+                request_ip = #{requestIp}
+            </if>
+            <if test="method != null and method != ''">
+                method = #{method}
+            </if>
+            <if test="params != null and params != ''">
+                params = #{params}
+            </if>
+            <if test="exceptionCode != null and exceptionCode != ''">
+                exception_code = #{exceptionCode}
+            </if>
+            <if test="exceptionDetail != null and exceptionDetail != ''">
+                exception_detail = #{exceptionDetail}
+            </if>
+            <if test="createUser != null and createUser != ''">
+                create_user = #{createUser}
+            </if>
+            <if test="createDate != null">
+                create_date = #{createDate}
+            </if>
+            <if test="createEndTime != null and createStartTime != null">
+                create_date between #{createStartTime} and  #{createEndTime}
+            </if>
+        </where>
+        order by create_date desc
+    </select>
+</mapper>

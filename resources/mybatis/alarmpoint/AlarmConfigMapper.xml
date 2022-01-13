@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.alarmpoint.AlarmConfigMapper">
+  <resultMap id="BaseResultMap" type="com.baosight.entity.alarmpoint.AlarmConfig">
+  </resultMap>
+  <update id="updateById">
+    update v_bc_alarm_config
+    <set>
+      <if test="deviceId!=null and deviceId!=''">
+         device_id = #{deviceId},
+      </if>
+      <if test="alarmId!=null and alarmId!=''">
+        alarm_id = #{alarmId},
+      </if>
+      <if test="alarmTimeDetail!=null and alarmTimeDetail!=''">
+        alarm_time_detail = #{alarmTimeDetail},
+      </if>
+      <if test="alarmTimeMoban!=null and alarmTimeMoban!=''">
+        alarm_time_moban = #{alarmTimeMoban},
+      </if>
+      <if test="alarmIsOpen!=null">
+        alarm_is_open = #{alarmIsOpen},
+      </if>
+      <if test="remark!=null and remark!=''">
+        remark = #{remark},
+      </if>
+      <if test="remark2!=null and remark2!=''">
+        remark2 = #{remark2}
+      </if>
+    </set>
+    <where>
+      <if test="id!=null and id!=''">
+        id = #{id}
+      </if>
+    </where>
+
+  </update>
+  <delete id="deleteById">
+    delete from v_bc_alarm_config where id = #{id};
+  </delete>
+    <select id="getList" resultMap="BaseResultMap">
+      select * from v_bc_alarm_config
+    <where>
+      <if test="alarmTimeDetail!=null and alarmTimeDetail!=''">
+        alarm_time_detail like concat("%",#{alarmTimeDetail},"%")
+      </if>
+      <if test="alarmTimeMoban!=null and alarmTimeMoban!=''">
+       and alarm_time_detail like concat("%",#{alarmTimeDetail},"%")
+      </if>
+      <if test="alarmIsOpen!=null">
+       and alarm_is_open=#{alarmIsOpen}
+      </if>
+    </where>
+</select>
+
+</mapper>

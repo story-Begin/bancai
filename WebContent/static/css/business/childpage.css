@@ -1,0 +1,21 @@
+body {background-color: transparent;}
+.hide{display:none;}
+.container-fluid{padding-left:0px;padding-right:15px;}
+#filter-block label{ color:white; }
+.layui-table th { text-align: center;background-color: #afd2e3;color:#464545;font-weight: 800;min-width:130px;}
+.layui-table{background-color:transparent; color:white;}
+.layui-table tbody tr:hover{background-color: rgba(40, 78, 126, 1);}
+.layui-table td{border:1px solid rgba(179, 190, 204, 0.6);}
+.btn-primary{background:linear-gradient(#f28989, #f83e3e)!important;border:0px;color:white!important;}
+.btn-primary:focus,.btn-primary:hover{background-color:#cc4648!important;border:0px;color:white!important;}
+.layui-layer-title{background-color:#2cc6ea;color:white; }
+.layui-layer-page .layui-layer-content {color:white;}
+.layui-layer{background-color: rgba(11,51,100,0.9);box-shadow:1px 1px 10px #032552;}
+.layui-layer-btn .layui-layer-btn0{border-color:transparent;}
+.layui-layer-btn .layui-layer-btn0{background:linear-gradient(#f28989, #f83e3e)!important;border:0px;color:white!important;}
+.layui-layer-btn .layui-layer-btn0:focus,.layui-layer-btn .layui-layer-btn0:hover{background-color:#cc4648!important;border:0px;color:white!important;}
+.layui-laypage .layui-laypage-curr .layui-laypage-em{background-color:#6faed9;}
+.pagination > li > a, .pager > li > a{height:30px;border:0px;}
+.btn-success, .btn-success:focus{background-color:#47aefc !important}
+.pagination > li > .choseJPage{height:30px;}
+/*.layui-table td, .layui-table th{padding:5px 5px}*/

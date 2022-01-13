@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.platform.DHCameraBrutDao">
+
+    <resultMap id="Base_dh_CameraBrut_Map" type="com.baosight.entity.platform.DHCameraBrutEntity">
+        <result column="id" property="id"/>
+        <result column="cameraIndexCode" property="cameraIndexCode"/>
+        <result column="gbIndexCode" property="gbIndexCode"/>
+        <result column="name" property="name"/>
+        <result column="deviceIndexCode" property="deviceIndexCode"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="altitude" property="altitude"/>
+        <result column="pixel" property="pixel"/>
+        <result column="cameraType" property="cameraType"/>
+        <result column="cameraTypeName" property="cameraTypeName"/>
+        <result column="installPlace" property="installPlace"/>
+        <result column="matrixCode" property="matrixCode"/>
+        <result column="chanNum" property="chanNum"/>
+        <result column="viewshed" property="viewshed"/>
+        <result column="capabilitySet" property="capabilitySet"/>
+        <result column="capabilitySetName" property="capabilitySetName"/>
+        <result column="intelligentSet" property="intelligentSet"/>
+        <result column="intelligentSetName" property="intelligentSetName"/>
+        <result column="recordLocation" property="recordLocation"/>
+        <result column="recordLocationName" property="recordLocationName"/>
+        <result column="ptz" property="ptz"/>
+        <result column="ptzName" property="ptzName"/>
+        <result column="ptzController" property="ptzController"/>
+        <result column="ptzControllerName" property="ptzControllerName"/>
+        <result column="deviceResourceType" property="deviceResourceType"/>
+        <result column="deviceResourceTypeName" property="deviceResourceTypeName"/>
+        <result column="channelType" property="channelType"/>
+        <result column="channelTypeName" property="channelTypeName"/>
+        <result column="transType" property="transType"/>
+        <result column="transTypeName" property="transTypeName"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="unitIndexCode" property="unitIndexCode"/>
+        <result column="treatyType" property="treatyType"/>
+        <result column="treatyTypeName" property="treatyTypeName"/>
+        <result column="createTime" property="createTime"/>
+        <result column="status" property="status"/>
+        <result column="statusName" property="statusName"/>
+    </resultMap>
+
+    <sql id="Base_dh_CameraBrut_Column">
+        id,cameraIndexCode,gbIndexCode,name,deviceIndexCode,longitude,latitude,
+        altitude,pixel,cameraType,cameraTypeName,installPlace,matrixCode,chanNum,
+        viewshed,capabilitySet,capabilitySetName,intelligentSet,intelligentSetName,
+        recordLocation,recordLocationName,ptz,ptzName,ptzController,ptzControllerName,
+        deviceResourceType,deviceResourceTypeName,channelType,channelTypeName,
+        transType,transTypeName,updateTime,unitIndexCode,treatyType,treatyTypeName,
+        createTime,status,statusName
+    </sql>
+
+    <sql id="table">
+        v_dh_camera_brut
+    </sql>
+
+    <!--查询设备列表-->
+    <select id="findPageList" resultMap="Base_dh_CameraBrut_Map">
+        SELECT
+        <include refid="Base_dh_CameraBrut_Column"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="cameraIndexCode != null and cameraIndexCode != ''">
+                cameraIndexCode = #{cameraIndexCode}
+            </if>
+            <if test="gbIndexCode != null and gbIndexCode != ''">
+                gbIndexCode = #{gbIndexCode}
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="deviceIndexCode != null and deviceIndexCode != ''">
+                deviceIndexCode = #{deviceIndexCode}
+            </if>
+            <if test="longitude != null and longitude != ''">
+                longitude = #{longitude}
+            </if>
+            <if test="latitude != null and latitude != ''">
+                latitude = #{latitude}
+            </if>
+            <if test="altitude != null and altitude != ''">
+                altitude = #{altitude}
+            </if>
+            <if test="pixel != null and pixel != ''">
+                pixel = #{pixel}
+            </if>
+            <if test="cameraType != null and cameraType != ''">
+                cameraType = #{cameraType}
+            </if>
+            <if test="cameraTypeName != null and cameraTypeName != ''">
+                cameraTypeName = #{cameraTypeName}
+            </if>
+            <if test="installPlace != null and installPlace != ''">
+                installPlace = #{installPlace}
+            </if>
+            <if test="matrixCode != null and matrixCode != ''">
+                matrixCode = #{matrixCode}
+            </if>
+            <if test="chanNum != null and chanNum != ''">
+                chanNum = #{chanNum}
+            </if>
+            <if test="viewshed != null and viewshed != ''">
+                viewshed = #{viewshed}
+            </if>
+            <if test="capabilitySet != null and capabilitySet != ''">
+                capabilitySet = #{capabilitySet}
+            </if>
+            <if test="capabilitySetName != null and capabilitySetName != ''">
+                capabilitySetName = #{capabilitySetName}
+            </if>
+            <if test="intelligentSet != null and intelligentSet != ''">
+                intelligentSet = #{intelligentSet}
+            </if>
+            <if test="intelligentSetName != null and intelligentSetName != ''">
+                intelligentSetName = #{intelligentSetName}
+            </if>
+            <if test="recordLocation != null and recordLocation != ''">
+                recordLocation = #{recordLocation}
+            </if>
+            <if test="recordLocationName != null and recordLocationName != ''">
+                recordLocationName = #{recordLocationName}
+            </if>
+            <if test="ptz != null and ptz != ''">
+                ptz = #{ptz}
+            </if>
+            <if test="ptzName != null and ptzName != ''">
+                ptzName = #{ptzName}
+            </if>
+            <if test="ptzController != null and ptzController != ''">
+                ptzController = #{ptzController}
+            </if>
+            <if test="ptzControllerName != null and ptzControllerName != ''">
+                ptzControllerName = #{ptzControllerName}
+            </if>
+            <if test="deviceResourceType != null and deviceResourceType != ''">
+                deviceResourceType = #{deviceResourceType}
+            </if>
+            <if test="deviceResourceTypeName != null and deviceResourceTypeName != ''">
+                deviceResourceTypeName = #{deviceResourceTypeName}
+            </if>
+            <if test="channelType != null and channelType != ''">
+                channelType = #{channelType}
+            </if>
+            <if test="channelTypeName != null and channelTypeName != ''">
+                channelTypeName = #{channelTypeName}
+            </if>
+            <if test="transType != null and transType != ''">
+                transType = #{transType}
+            </if>
+            <if test="transTypeName != null and transTypeName != ''">
+                transTypeName = #{transTypeName}
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                updateTime = #{updateTime}
+            </if>
+            <if test="unitIndexCode != null and unitIndexCode != ''">
+                unitIndexCode = #{unitIndexCode}
+            </if>
+            <if test="treatyType != null and treatyType != ''">
+                treatyType = #{treatyType}
+            </if>
+            <if test="treatyTypeName != null and treatyTypeName != ''">
+                treatyTypeName = #{treatyTypeName}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                createTime = #{createTime}
+            </if>
+            <if test="status != null and status != ''">
+                status = #{status}
+            </if>
+            <if test="statusName != null and statusName != ''">
+                statusName = #{statusName}
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark}
+            </if>
+            <if test="remark2 != null and remark2 != ''">
+                remark2 = #{remark2}
+            </if>
+            <if test="remark3 != null and remark3 != ''">
+                remark3 = #{remark3}
+            </if>
+            <if test="remark4 != null and remark4 != ''">
+                remark4 = #{remark4}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                createTime = #{createTime}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="findAllId" resultType="java.lang.Integer">
+        SELECT id FROM <include refid="table"/>
+    </select>
+
+    <!-- 批量删除设备 -->
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from
+        <include refid="table"/>
+        where id in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <update id="updateOnlineStatusByDeviceIndexCode">
+        UPDATE <include refid="table"/>
+           SET status = #{status}
+         WHERE name = #{name}
+--          WHERE deviceIndexCode = #{code}
+    </update>
+
+</mapper>

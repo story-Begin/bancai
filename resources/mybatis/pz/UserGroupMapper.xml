@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.pz.UserGroupDao">
+
+    <resultMap id="Base_UserGroup_Map" type="com.baosight.entity.equipment.UserGroupEntity">
+        <result column="id" property="id"/>
+        <result column="group_ename" property="groupEname"/>
+        <result column="group_cname" property="groupCname"/>
+        <result column="group_type" property="groupType"/>
+        <result column="sort_index" property="sortIndex"/>
+        <result column="rec_creator" property="recCreator"/>
+        <result column="rec_create_time" property="recCreateTime"/>
+        <result column="rec_revisor" property="recRevisor"/>
+        <result column="rec_revise_time" property="recReviseTime"/>
+        <result column="archive_flag" property="archiveFlag"/>
+        <result column="manage_group_ename" property="manageGroupEname"/>
+    </resultMap>
+
+    <resultMap id="Base_UserGroupAllList_Map" type="com.baosight.dto.equipment.resp.UserGroupAllListDTO">
+        <result column="id" property="id"/>
+        <result column="group_ename" property="groupEname"/>
+        <result column="group_cname" property="groupCname"/>
+        <result column="recCreateTime" property="recCreateTime"/>
+    </resultMap>
+
+    <sql id="Base_UserGroup_Column">
+        id, group_ename, group_cname, group_type, sort_index, rec_creator, rec_create_time,
+        rec_revisor, rec_revise_time, archive_flag, manage_group_ename
+    </sql>
+
+    <select id="findPageList" resultMap="Base_UserGroup_Map">
+        select
+        <include refid="Base_UserGroup_Column"/>
+        from xs_user_group
+        <where>
+            <if test="groupCname != null and groupCname != ''">
+                group_cname like concat('%', #{groupCname}, '%')
+            </if>
+        </where>
+        order by REC_CREATE_TIME desc
+    </select>
+
+    <select id="selectUserGroupId" resultType="java.lang.String">
+        select
+        xg.id
+        from xs_user u
+        left join xs_user_group_member xm on u.user_id = xm.MEMBER_ID
+        left join xs_user_group xg on xm.PARENT_ID = xg.id
+        <where>
+            <if test="userId != null and userId != ''">
+                u.USER_ID = #{userId}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="getUserGroupAllList" parameterType="java.lang.String" resultMap="Base_UserGroupAllList_Map">
+        select
+        <include refid="Base_UserGroup_Column"/>
+        from (
+        select
+        row_number() over(ORDER BY REC_CREATE_TIME DESC) as r, e.*
+        from xs_user_group e
+        <where>
+            <if test="queryContent != null and queryContent != ''">
+                e.group_cname like '%'||#{queryContent}||'%'
+            </if>
+        </where>
+        )
+        where r between #{pageNo} AND #{pageSize}
+        order by REC_CREATE_TIME desc
+    </select>
+
+    <select id="countUserGroup" resultType="int">
+        select count(id) from xs_user_group e
+    </select>
+
+    <resultMap id="Base_UserGroupDevice_Map" type="com.baosight.entity.pz.UserGroupDeviceEntity">
+        <result column="id" property="id"/>
+        <result column="fk_user_group_id" property="userGroupId"/>
+        <result column="fk_device_id" property="deviceId"/>
+    </resultMap>
+
+    <select id="selectByGroupId" resultMap="Base_UserGroupDevice_Map">
+        select id, fk_user_group_id, fk_device_id from v_user_group_device
+        <where>
+            <if test="usergroupId != null and usergroupId != ''">
+                fk_user_group_id = #{usergroupId}
+            </if>
+            <if test="deviceId != null and deviceId.size() > 0">
+                and fk_device_id in
+                <foreach collection="deviceId" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByUserGroupId" resultType="java.lang.Integer">
+        select fk_device_id from v_user_group_device
+        <where>
+            <if test="userGroupId != null">
+                fk_user_group_id = #{userGroupId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save">
+        insert into v_user_group_device (fk_user_group_id, fk_device_id,createtime)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.userGroupId}, #{item.deviceId}, now())
+        </foreach>
+    </insert>
+
+    <delete id="deleteDevice">
+        delete from v_user_group_device
+        where id in
+        <foreach collection="idList" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

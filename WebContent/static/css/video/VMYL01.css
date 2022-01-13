@@ -1,0 +1,328 @@
+.headControl {
+    background: white;
+}
+.terrace-title{
+    width:295px;
+    height: 25px;
+    margin-top: -4px;
+    background: #dbefff;
+}
+.ytai-direct-box{
+    height: 100%;
+    width: 50%;
+    background: url(../../icon/terrace/ytai-bg.png) no-repeat transparent;
+    background-size: 110px 110px;
+    margin-top: 5px;
+    float:left;
+}
+.ytai-direct-box button{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    /*border: 0px;*/
+}
+.ytai-t{
+    background: url(../../icon/terrace/ytai-direct-t.png) no-repeat transparent;
+    margin-left: 45px;
+    border: 0px;
+}
+.ytai-t:hover{
+    background: url(../../icon/terrace/ytai-direct-thover.png) no-repeat transparent;
+    margin-left: 45px;
+    border: 0px;
+}
+.ytai-tr{
+    background: url(../../icon/terrace/ytai-direct-tr.png) no-repeat transparent;
+    margin-left: 75px;
+    margin-top: 15px;
+    border: 0px;
+}
+.ytai-tr:hover{
+    background: url(../../icon/terrace/ytai-direct-trhover.png) no-repeat transparent;
+    margin-left: 75px;
+    margin-top: 15px;
+    border: 0px;
+}
+.ytai-r{
+    background: url(../../icon/terrace/ytai-direct-r.png) no-repeat transparent;
+    margin-left: 87px;
+    margin-top: 45px;
+    border: 0px;
+}
+.ytai-r:hover{
+    background: url(../../icon/terrace/ytai-direct-rhover.png) no-repeat transparent;
+    margin-left: 87px;
+    margin-top: 45px;
+    border: 0px;
+}
+.ytai-rb{
+    background: url(../../icon/terrace/ytai-direct-rb.png) no-repeat transparent;
+    margin-left: 73px;
+    margin-top: 72px;
+    border: 0px;
+}
+.ytai-rb:hover{
+    background: url(../../icon/terrace/ytai-direct-rbhover.png) no-repeat transparent;
+    margin-left: 73px;
+    margin-top: 72px;
+    border: 0px;
+}
+.ytai-b{
+    background: url(../../icon/terrace/ytai-direct-b.png) no-repeat transparent;
+    margin-left: 47px;
+    margin-top: 85px;
+    border: 0px;
+}
+.ytai-b:hover{
+    background: url(../../icon/terrace/ytai-direct-bhover.png) no-repeat transparent;
+    margin-left: 47px;
+    margin-top: 85px;
+    border: 0px;
+}
+.ytai-bl{
+    background: url(../../icon/terrace/ytai-direct-bl.png) no-repeat transparent;
+    margin-left: 15px;
+    margin-top: 73px;
+    border: 0px;
+}
+.ytai-bl:hover{
+    background: url(../../icon/terrace/ytai-direct-blhover.png) no-repeat transparent;
+    margin-left: 15px;
+    margin-top: 73px;
+    border: 0px;
+}
+.ytai-l{
+    background: url(../../icon/terrace/ytai-direct-l.png) no-repeat transparent;
+    margin-left: 3px;
+    margin-top: 40px;
+    border: 0px;
+}
+.ytai-l:hover{
+    background: url(../../icon/terrace/ytai-direct-lhover.png) no-repeat transparent;
+    margin-left: 3px;
+    margin-top: 40px;
+    border: 0px;
+}
+.ytai-lt{
+    background: url(../../icon/terrace/ytai-direct-lt.png) no-repeat transparent;
+    margin-left: 17px;
+    margin-top: 12px;
+    border: 0px;
+}
+.ytai-lt:hover{
+    background: url(../../icon/terrace/ytai-direct-lthover.png) no-repeat transparent;
+    margin-left: 17px;
+    margin-top: 12px;
+    border: 0px;
+}
+.ytai-c{
+    background: url(../../icon/terrace/ytai-direct-c.png) no-repeat transparent;
+    /*background-size: 45px 45px;
+    margin-left: 44px;
+    margin-top: 43px;*/
+    border: 0px;
+}
+.ytai-c:hover{
+    background: url(../../icon/terrace/ytai-direct-chover.png) no-repeat transparent;
+    /*background-size: 45px 45px;
+    margin-left: 44px;
+    margin-top: 43px;*/
+    border: 0px;
+}
+.ytai-rbtn-box{
+    margin-left: 150px;
+    /*margin-top: -106px;*/
+    position: absolute;
+    color: white;
+    width:50%;
+    float:right;
+}
+.ytai-rbtn-table .ziti{
+    color: white;
+}
+.ytai-rbtn-box button{
+    border: 0px;
+}
+.ytai-btn-enlarge{
+    background: url(../../icon/terrace/ytai-btn-enlarge.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+}
+.ytai-btn-narrow{
+    background: url(../../icon/terrace/ytai-btn-narrow.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+    /*margin-left: 5px;*/
+}
+.ytai-btn-far{
+    background: url(../../icon/terrace/ytai-btn-far.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+}
+.ytai-btn-near{
+    background: url(../../icon/terrace/ytai-btn-near.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+    /*margin-left: 5px;*/
+}
+.ytai-btn-big{
+    background: url(../../icon/terrace/ytai-btn-big.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+}
+.ytai-btn-small{
+    background: url(../../icon/terrace/ytai-btn-small.png) no-repeat transparent;
+    width: 30px;
+    height: 30px;
+    /*margin-left: 5px;*/
+}
+/*速度条*/
+.ytai-slider-speed .slow{
+    position: relative;
+    right: -10px;
+}
+.slider-speed{
+
+}
+
+
+/*.rb-btn-setup{
+    width: 18px;
+    height: 18px;
+    background: url(../icon/video/photograph.png) no-repeat transparent;
+    border-style:none;
+    background-size: 12px 12px;
+    cursor: pointer;
+}*/
+#DHVideoPlayer {
+    height: 95%;
+    background: white;
+}
+/*视频操作样式*/
+.right-bottom-btn {
+    text-align: center;
+    margin-top: 5px;
+    background-color: #3088f4;
+    height: 24px;
+}
+.rb-btn-destruction{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/closevideo.png) no-repeat transparent;
+    border-style:none;
+    background-size: 25px 26px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 2px;*/
+}
+/*.rb-btn-destruction:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-photograph{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/photograph.png) no-repeat transparent;
+    border-style:none;
+    background-size: 20px 20px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 5px;*/
+}
+/*.rb-btn-photograph:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-startRecording{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/startRecording.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-startRecording:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-stopRecording{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/pic.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 5px;*/
+}
+/*.rb-btn-stopRecording:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-singleScreen{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/singleScreen.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-singleScreen:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-fourPictures{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/fourPictures.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-fourPictures:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-ninePictures{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/ninePictures.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-ninePictures:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-sixteenPictures{
+    width:22px;
+    height:22px;
+    background: url(../../icon/video/sixteenPictures.png) no-repeat transparent;
+    border-style:none;
+    background-size:22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-sixteenPictures:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-emergency{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/emergency.png) no-repeat transparent;
+    border-style:none;
+    background-size: 20px 20px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 5px;*/
+}
+/*.rb-btn-emergency:hover{*/
+/*background-color:#2828f5;*/
+/*}*/

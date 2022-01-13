@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.equipment.NvrDataDao">
+
+    <resultMap id="Base_NvrData_Map" type="com.baosight.entity.equipment.NvrDataEntity">
+        <result column="id" property="id"/>
+        <result column="fk_nvr_bh" property="nvrBh"/>
+        <result column="nvr_name" property="nvrName"/>
+        <result column="nvr_model" property="nvrModel"/>
+        <result column="nvr_area" property="nvrArea"/>
+        <result column="fk_device_organization_id" property="deviceOrganizationId"/>
+        <result column="nvr_addr" property="nvrAddr"/>
+        <result column="ip_cnum" property="ipCnum"/>
+        <result column="nvr_ip" property="nvrIp"/>
+        <result column="nvr_port" property="nvrPort"/>
+        <result column="channel_number" property="channelNumber"/>
+        <result column="channel_name" property="channelName"/>
+        <result column="user" property="user"/>
+        <result column="pwd" property="pwd"/>
+        <result column="status" property="status"/>
+        <result column="remark" property="remark"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_NvrData_Column">
+        id,fk_nvr_bh,nvr_name,nvr_model,nvr_area,fk_device_organization_id,
+        nvr_addr,ip_cnum,nvr_ip,nvr_port,channel_number,channel_name,`user`,
+        pwd,`status`,remark,create_time
+
+    </sql>
+
+    <!--查询录像机列表-->
+    <select id="findPageList" resultMap="Base_NvrData_Map">
+        SELECT
+        <include refid="Base_NvrData_Column"/>
+        FROM
+        v_nvr_data
+        <where>
+            <if test="nvrName != null and nvrName != ''">
+                nvr_name like concat('%',#{nvrName},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!-- 批量删除设备 -->
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from v_nvr_data
+        where id in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,27 @@
+#app {
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    color: #756C83;
+}
+
+.el-table .cell {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 23px;
+    font-size: 6px;
+}
+
+.el-table--mini td, .el-table--mini th {
+    padding: 4px 0;
+}
+
+.el-form-item__error {
+    color: rgb(245, 108, 108);
+    font-size: 12px;
+    line-height: 1;
+    padding-top: 4px;
+    position: absolute;
+    top: 70%;
+    left: 0px;
+}

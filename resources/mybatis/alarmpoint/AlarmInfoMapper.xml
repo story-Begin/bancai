@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.alarmpoint.AlarmInfoMapper">
+  <resultMap id="BaseResultMap" type="com.baosight.entity.alarmpoint.AlarmInfo">
+    <result property="alarmId" column="alarm_id"/>
+    <result property="alarmSource" column="alarm_source"/>
+    <result property="alarmType" column="alarm_type"/>
+    <result property="createTime" column="create_time"/>
+    <result property="remark" column="remark"/>
+  </resultMap>
+    <update id="updateById" >
+      update v_bc_alarm_info
+      <set>
+        <if test="alarmSource!=null and alarmSource!=''">
+          alarm_source = #{alarmSource},
+        </if>
+        <if test="alarmType!=null and alarmType!=''">
+          alarm_type = #{alarmType},
+        </if>
+        <if test="remark!=null and remark!=''">
+          remark = #{remark}
+        </if>
+      </set>
+        <where>
+          <if test="alarmId!=null">
+            where alarm_id = #{alarmId}
+          </if>
+        </where>
+    </update>
+  <delete id="deleteById">
+    delete from v_bc_alarm_info where alarm_id = #{id};
+  </delete>
+  <select id="getList" resultMap="BaseResultMap">
+    select * from v_bc_alarm_info
+    <where>
+      <if test="alarmSource!=null and alarmSource!=''">
+        alarm_source like concat("%",#{alarmSource},"%")
+      </if>
+
+      <if test="alarmType!=null and alarmType!=''">
+        alarm_type =#{alarmType}
+      </if>
+    </where>
+  </select>
+
+</mapper>

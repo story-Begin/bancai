@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.platform.VThirdpartyOperationDao">
+
+    <resultMap id="Base_Map" type="com.baosight.entity.platform.VThirdpartyOperation">
+        <result column="id" property="id"/>
+        <result column="system_no" property="systemNo"/>
+        <result column="system_name" property="systemName"/>
+        <result column="quest_time" property="questTime"/>
+        <result column="device_code" property="deviceCode"/>
+        <result column="remark" property="remark"/>
+        <result column="remark2" property="remark2"/>
+        <result column="remark3" property="remark3"/>
+        <result column="remark4" property="remark4"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="column">
+        id,systemNo,systemName,questTime,deviceCode,remark,createtime
+    </sql>
+
+    <sql id="table">
+        v_thirdparty_operation
+    </sql>
+
+    <!--查询设备列表-->
+    <select id="findPageList" resultMap="Base_Map">
+        SELECT
+        <include refid="column"/>
+        FROM
+        <include refid="table"/>
+        <where>
+            <if test="id != null and id != ''">
+                id = #{id}
+            </if>
+            <if test="systemNo != null and systemNo != ''">
+                systemNo = #{systemNo}
+            </if>
+            <if test="systemName != null and systemName != ''">
+                systemName = #{systemName}
+            </if>
+            <if test="questTime != null and questTime != ''">
+                questTime = #{questTime}
+            </if>
+            <if test="deviceCode != null and deviceCode != ''">
+                deviceCode = #{deviceCode}
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark}
+            </if>
+            <if test="createtime != null and createtime != ''">
+                createtime = #{createtime}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!-- 批量删除 -->
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from
+        <include refid="table"/>
+        where id in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+</mapper>

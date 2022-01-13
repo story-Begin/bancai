@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.cx.DeviceAlarmDao">
+
+    <resultMap id="Base_DeviceAlarm_Map" type="com.baosight.entity.cx.DeviceAlarmEntity">
+        <result column="id" property="id"/>
+        <result column="equipment_num" property="equipmentNum"/>
+        <result column="equipment_name" property="equipmentName"/>
+        <result column="call_police_type" property="callPoliceType"/>
+        <result column="happen_time" property="happenTime"/>
+        <result column="call_police_grade" property="callPoliceGrade"/>
+        <result column="flag" property="flag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="port_name" property="portName"/>
+        <result column="port_code" property="portCode"/>
+        <result column="status" property="status"/>
+        <result column="alarm_msg" property="alarmMsg"/>
+    </resultMap>
+
+    <sql id="Base_DeviceAlarm_Column">
+        id, equipment_num, equipment_name, call_police_type, happen_time,
+        call_police_grade, flag, create_time,port_name,port_code,status,alarm_msg
+    </sql>
+
+    <sql id="Base_DeviceAlarm_InsertColumn">
+        equipament_num,
+        equipment_name,
+        call_police_type,
+        happen_time,
+        call_police_grade,
+        create_time,
+        port_name,
+        port_code,
+        status
+    </sql>
+
+    <select id="selectDeviceAlarmList" resultMap="Base_DeviceAlarm_Map">
+        select
+        <include refid="Base_DeviceAlarm_Column"/>
+        from v_device_alarm
+        <where>
+            <if test="equipmentName != null and equipmentName != ''">
+                equipment_name like concat('%',#{equipmentName},'%')
+            </if>
+            <if test="callPoliceType != null and callPoliceType != null">
+                and call_police_type = #{callPoliceType}
+            </if>
+            <if test="startTime != null">
+                and create_time >= DATE_FORMAT(#{startTime},'%Y-%m-%d 00:00:00')
+            </if>
+            <if test="endTime != null">
+                and create_time &lt;= DATE_FORMAT(#{endTime},'%Y-%m-%d 23:59:59')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectDeviceAlarmAllList" resultMap="Base_DeviceAlarm_Map">
+        select
+        <include refid="Base_DeviceAlarm_Column"/>
+        from v_device_alarm where call_police_type in (select ITEM_CODE from tedcm01 where CODESET_CODE = 'mg.alarm_type')
+    </select>
+
+    <insert id="SavedeviceAlarmData" parameterType="java.util.List" >
+        insert into v_device_alarm
+        (equipment_name,
+        call_police_type,
+        happen_time,
+        call_police_grade,
+        port_name,
+        status)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.deviceName},
+            #{item.alarmType},
+            #{item.alarmDateString},
+            #{item.alarmGrade},
+            #{item.channelName},
+            #{item.handleStat}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertDeviceAlarmData" parameterType="java.util.List">
+        insert into v_device_alarm
+        (
+        equipment_num,
+        equipment_name,
+        call_police_type,
+        happen_time,
+        call_police_grade,
+        alarm_msg,
+        flag
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.deviceId},
+            #{item.alarmSourceName},
+            #{item.alarmType},
+            #{item.logTime},
+            #{item.alarmLevel},
+            #{item.alarmMsg},
+            #{item.flag}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertDeviceRealTimeAlarmData" parameterType="com.baosight.dto.cx.resp.DeviceAlarmOutRealTimeDataDTO">
+            insert into v_device_alarm
+            (
+            equipment_num,
+            equipment_name,
+            call_police_type,
+            happen_time,
+            call_police_grade,
+            port_name,
+            status,
+            alarm_msg,
+            flag
+            )
+        value(
+        #{deviceCode},
+        #{deviceName},
+        #{alarmType},
+        #{alarmTime},
+        #{alarmCode},
+        #{alarmChannelName},
+        #{alarmStat},
+        #{alarmData},
+        '1'
+        )
+    </insert>
+
+    <select id="selectAlarmTypeCount" resultType="int" parameterType="int">
+        select count(1) from v_device_alarm where call_police_type = #{typeCode};
+    </select>
+
+    <select id="selectAlarmCount" resultType="int">
+        select count(1) from v_device_alarm where DATE_FORMAT(happen_time,'%Y-%m-%d')
+        = DATE_FORMAT(NOW(),'%Y-%m-%d') and call_police_type in (select ITEM_CODE from tedcm01 where CODESET_CODE = 'mg.alarm_type');
+    </select>
+
+    <update id="updateAlarmFlag">
+        update  v_device_alarm set flag =2 where flag = 1;
+    </update>
+
+    <select id="selectAlarmCountByDate" resultType="int" parameterType="date">
+        select count(1) from v_device_alarm where DATE_FORMAT(happen_time,'%Y-%m-%d')=DATE_FORMAT(#{date},'%Y-%m-%d');
+    </select>
+
+    <select id="getRealTimeAlarmData" resultMap="Base_DeviceAlarm_Map">
+        select
+        <include refid="Base_DeviceAlarm_Column"/>
+        from v_device_alarm
+        where DATE_FORMAT(happen_time,'%Y-%m-%d')=DATE_FORMAT(NOW(),'%Y-%m-%d')
+        and call_police_type in (select ITEM_CODE from tedcm01 where CODESET_CODE = 'mg.alarm_type');
+    </select>
+
+    <delete id="flushAlarmData">
+        truncate v_device_alarm;
+    </delete>
+    <select id="getTablePageName" resultType="string" parameterType="java.lang.String">
+        select form_cname from tedfa00 where FORM_ENAME =#{formEname};
+    </select>
+
+</mapper>

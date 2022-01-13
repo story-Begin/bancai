@@ -1,0 +1,59 @@
+body {
+    background: none;
+}
+
+body {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='iplatui/img/login.png',
+            sizingMethod='scale');
+}
+
+.login-block {
+    padding: 24px 50px 30px;
+    background: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#CC213864, endcolorstr=#CC1D2C51);
+    border-radius: 2px;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.i-overlay {
+    background: #000000;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+.i-region-header {
+    background: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType = 1, startcolorstr=#1F65DA, endcolorstr=#368FFF);
+}
+
+.download-btn:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+}
+
+.download-btn:active {
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+}
+
+.copyright-info {
+    filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+}
+
+.phone-number {
+    filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+}
+
+.info-content {
+    background: transparent;
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#7D031D47, endcolorstr=#7D031D47);
+}
+
+.logo {
+    background: none;
+}
+
+.logo {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+            src='iplatui/img/logo.png',
+            sizingMethod='scale');
+}

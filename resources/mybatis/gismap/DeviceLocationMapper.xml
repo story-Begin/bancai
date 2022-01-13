@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.gismap.DeviceLocationDao">
+    <sql id="Base_DeviceLocation_Column">
+        	vdl.id,
+	        vcd.CAMERAINDEXCODE,
+	        vcd.CAMERANAME,
+            vdl.longitude,
+	        vdl.latitude,
+	        vcd.ONLINESTATUS,
+	        vcd.CAMERATYPE,
+	        vdl.create_time
+    </sql>
+
+    <resultMap id="Base_DeviceLocation_Map" type="com.baosight.dto.gismap.resp.DeviceLocationCameraRespDTO">
+        <result property="deviceId" column="id"/>
+        <result property="deviceCode" column="CAMERAINDEXCODE"/>
+        <result property="deviceName" column="CAMERANAME"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="deviceType" column="CAMERATYPE"/>
+        <result property="deviceStatus" column="ONLINESTATUS"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="findDeviceByName" resultMap="Base_DeviceLocation_Map">
+        select
+        <include refid="Base_DeviceLocation_Column"/>
+        from
+        v_device_location vdl
+        JOIN
+        v_ywh_hk_device vcd
+        on vdl.device_id=vcd.CAMERAINDEXCODE
+        <where>
+            <if test="deviceName !=null and deviceName!=''">
+                vcd.CAMERANAME like concat('%',#{deviceName},'%')
+            </if>
+                and vcd.FK_ORGID in
+                <foreach collection="idList" item="o" open="(" separator="," close=")">
+                    #{o, jdbcType=INTEGER}
+                </foreach>
+            <if test="deListId!=null and deListId.size() > 0" >
+                and vcd.id in
+                <foreach collection="deListId" item="o" open="(" separator="," close=")">
+                    #{o, jdbcType=INTEGER}
+                </foreach>
+            </if>
+            <if test="mapId !=null and mapId!=''">
+               and   vdl.line_area=#{mapId}
+            </if>
+        </where>
+    </select>
+
+    <select id="findDeviceAll" resultMap="Base_DeviceLocation_Map">
+        select
+        <include refid="Base_DeviceLocation_Column"/>
+        from
+        v_device_location vdl
+        join
+        v_ywh_hk_device vcd
+        on vdl.device_id=vcd.CAMERAINDEXCODE
+        where vcd.FK_ORGID in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+        <if test="deListId!=null and deListId.size() > 0" >
+            and vcd.id in
+            <foreach collection="deListId" item="o" open="(" separator="," close=")">
+                #{o, jdbcType=INTEGER}
+            </foreach>
+        </if>
+         and vdl.line_area=#{mapId} ORDER BY longitude;
+    </select>
+
+    <delete id="deleteDeviceLocationById" parameterType="int">
+        delete from
+        v_device_location
+        where
+        id = #{id};
+    </delete>
+
+    <update id="updateDeviceInfo" parameterType="com.baosight.dto.gismap.req.DeviceLocationCameraReqDTO">
+        update
+        v_device_location vdl,v_ywh_hk_device vcd
+        set
+        vdl.longitude = #{longitude},
+        vdl.latitude = #{latitude},
+
+	    vcd.CAMERATYPE=#{deviceType},
+	    vcd.CAMERANAME=#{deviceName}
+        where
+        vdl.id =  #{deviceId} and vcd.CAMERAINDEXCODE=#{deviceCode};
+    </update>
+
+    <insert id="insertDeviceInfo" parameterType="com.baosight.dto.gismap.resp.DeviceLocationCameraRespDTO" >
+        insert into
+        v_device_location
+         (
+         device_id,
+         line_area,
+         longitude,
+         latitude,
+         create_time
+         )
+         value
+         (
+         #{deviceLocation.deviceCode},
+         #{lineArea},
+         #{deviceLocation.longitude},
+         #{deviceLocation.latitude},
+         #{deviceLocation.createTime}
+         );
+    </insert>
+
+    <select id="getOrganizationList" resultType="map" parameterType="int">
+        select vdo.organization_name as organName,vcd.FK_ORGID as id
+        FROM v_ywh_hk_device  vcd
+        join v_device_organization vdo
+        on vcd.FK_ORGID = vdo.id
+        where vcd.areastatus = #{spaceId} and vdo.map_path is not null
+        GROUP BY vcd.FK_ORGID;
+    </select>
+
+    <select id="getAreaName" resultType="string" parameterType="int">
+        select organization_name
+        from v_device_organization
+        where id = #{areaId};
+    </select>
+
+    <select id="getMapPath" resultType="string">
+        select map_path from v_device_organization where id = #{id} and map_path is not null;
+    </select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.vm.UserDao">
+
+    <resultMap id="Base_DevicePoll_Map" type="com.baosight.entity.vm.UserEntity">
+        <result column="user_id" property="userId"/>
+        <result column="login_name" property="loginName"/>
+        <result column="user_name" property="userName"/>
+    </resultMap>
+
+    <sql id="Base_DevicePoll_Column">
+        user_id, login_name, user_name
+    </sql>
+
+    <select id="selectUserList" resultMap="Base_DevicePoll_Map">
+        select
+        <include refid="Base_DevicePoll_Column"/>
+        from xs_user
+        <where>
+            <if test="loginName != null and loginName != ''">
+                login_name like concat('%',#{loginName},'%')
+            </if>
+            <if test="userName != null and userName != ''">
+                and user_name like concat('%',#{userName},'%')
+            </if>
+        </where>
+        order by user_id asc
+    </select>
+
+
+</mapper>

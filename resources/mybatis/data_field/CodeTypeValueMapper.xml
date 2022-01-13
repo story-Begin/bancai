@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.data_field.CodeTypeValueMapper">
+
+    <resultMap id="Base_CodeTypeValue_Map" type="com.baosight.dto.data_field.CodeTypeValueRespDTO">
+        <result column="CODESET_CODE" property="codeSetCode"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_CNAME" property="itemName"/>
+    </resultMap>
+
+    <select id="selectByCodeType" resultMap="Base_CodeTypeValue_Map">
+        select
+        te.CODESET_CODE, te.ITEM_CODE, te.ITEM_CNAME
+        from tedcm01 te
+        left join tedcm00 tedc on te.CODESET_CODE = tedc.CODESET_CODE
+        <where>
+            <if test="itemCode != null and itemCode != ''">
+                te.CODESET_CODE = #{itemCode}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByCodeTypeList" resultMap="Base_CodeTypeValue_Map">
+        select
+        te.CODESET_CODE,te.ITEM_CODE, te.ITEM_CNAME
+        from tedcm01 te
+        left join tedcm00 tedc on te.CODESET_CODE = tedc.CODESET_CODE
+        <where>
+            <if test="itemCodeList != null and itemCodeList.size() > 0">
+                te.CODESET_CODE in
+                <foreach collection="itemCodeList" item="itemCode" open="(" separator="," close=")">
+                    #{itemCode}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

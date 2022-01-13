@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baosight.mapper.platform.VDeviceStatusDao">
+
+    <resultMap id="Base_dh_DeviceStatus_Map" type="com.baosight.entity.platform.VDeviceStatus">
+        <result column="id" property="id"/>
+        <result column="deviceType" property="deviceType"/>
+        <result column="deviceIndexCode" property="deviceIndexCode"/>
+        <result column="regionIndexCode" property="regionIndexCode"/>
+        <result column="collectTime" property="collectTime"/>
+        <result column="regionName" property="regionName"/>
+        <result column="indexCode" property="indexCode"/>
+        <result column="cn" property="cn"/>
+        <result column="treatyType" property="treatyType"/>
+        <result column="manufacturer" property="manufacturer"/>
+        <result column="ip" property="ip"/>
+        <result column="port" property="port"/>
+        <result column="online" property="online"/>
+    </resultMap>
+
+    <sql id="Base_dh_DeviceStatus_Column">
+        id,
+        deviceType,
+        deviceIndexCode,
+        regionIndexCode,
+        collectTime,
+        regionName,
+        indexCode,
+        cn,
+        treatyType,
+        manufacturer,
+        ip,
+        port,
+        online
+    </sql>
+
+    <sql id="table">
+        v_device_status
+    </sql>
+
+
+    <select id="selectByDeviceKey" resultMap="Base_dh_DeviceStatus_Map">
+        SELECT <include refid="Base_dh_DeviceStatus_Column"/>
+          FROM <include refid="table"/>
+         WHERE deviceIndexCode = #{deviceIndexCode}
+    </select>
+
+    <update id="updateByDeviceKey">
+        UPDATE <include refid="table"/>
+        <set>
+            <if test="id != null and id != ''">
+                id = #{id},
+            </if>
+            <if test="deviceType != null and deviceType != ''">
+                deviceType = #{deviceType},
+            </if>
+            <if test="deviceIndexCode != null and deviceIndexCode != ''">
+                deviceIndexCode = #{deviceIndexCode},
+            </if>
+            <if test="regionIndexCode != null and regionIndexCode != ''">
+                regionIndexCode = #{regionIndexCode},
+            </if>
+            <if test="collectTime != null and collectTime != ''">
+                collectTime = #{collectTime},
+            </if>
+            <if test="regionName != null and regionName != ''">
+                regionName = #{regionName},
+            </if>
+            <if test="indexCode != null and indexCode != ''">
+                indexCode = #{indexCode},
+            </if>
+            <if test="cn != null and cn != ''">
+                cn = #{cn},
+            </if>
+            <if test="treatyType != null and treatyType != ''">
+                treatyType = #{treatyType},
+            </if>
+            <if test="manufacturer != null and manufacturer != ''">
+                manufacturer = #{manufacturer},
+            </if>
+            <if test="ip != null and ip != ''">
+                ip = #{ip},
+            </if>
+            <if test="port != null and port != ''">
+                port = #{port},
+            </if>
+            <if test="online != null and online != ''">
+                online = #{online},
+            </if>
+            <if test="createTime != null and createTime != ''">
+                createTime = #{createTime},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="remark2 != null and remark2 != ''">
+                remark2 = #{remark2},
+            </if>
+            <if test="remark3 != null and remark3 != ''">
+                remark3 = #{remark3},
+            </if>
+            <if test="remark4 != null and remark4 != ''">
+                remark4 = #{remark4},
+            </if>
+        </set>
+         WHERE deviceIndexCode = #{deviceIndexCode}
+    </update>
+
+</mapper>

@@ -1,0 +1,145 @@
+#page-container #sidebar .side-header .logo,
+.i-index-content #sidebar .side-header .logo,
+#page-container.sidebar-mini #sidebar:hover .side-header .logo,
+.i-index-content.sidebar-mini #sidebar:hover .side-header .logo {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/baosight_logo.png', sizingMethod='scale');
+}
+
+#info-board, #info-board .k-content, #info-board .k-tabstrip,
+#info-board .k-panelbar .k-header, #info-board .k-panelbar .k-state-default,
+#info-board .k-panelbar .k-state-hover, .index-calendar,
+.index-charts, .index-favorite, .index-links,
+.index-favorite .i-region-content .fav-list .k-item .k-state-hover,
+.index-favorite .i-region-content .fav-list .k-item .k-state-default,
+.index-favorite .i-region-content .fav-list .k-item .k-state-selected{
+    filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr=#CCFFFFFF, endcolorstr=#CCFFFFFF);
+}
+
+.iplat-menu-ul .k-treeview .k-item .k-in:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startcolorstr=#2972EC, endcolorstr=#368FFF);
+}
+.iplat-menu-ul .k-treeview .k-item .k-in.k-state-hover:hover,
+.iplat-menu-ul .k-treeview .k-item .k-in.k-state-selected:hover,
+.iplat-menu-ul .k-treeview .k-item .k-in.k-state-focused:hover {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startcolorstr=#2972EC, endcolorstr=#368FFF);
+}
+
+.iplat-menu-ul .k-treeview .k-item .k-in.k-state-selected,
+.iplat-menu-ul .k-treeview .k-item .k-in.k-state-focused {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startcolorstr=#2972EC, endcolorstr=#368FFF);
+}
+
+#header-navbar {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startcolorstr=#1F65DA, endcolorstr=#368FFF);
+}
+
+#page-container #header-navbar .dropdown-menu .dropdown-triangle,
+.i-index-content #header-navbar .dropdown-menu .dropdown-triangle,
+#page-container #header-navbar .profile .dropdown-triangle,
+.i-index-content #header-navbar .profile .dropdown-triangle {
+    right: 20%;
+}
+
+#header-navbar .profile {
+    position: fixed;
+}
+
+.iplat-menu .open > a.i-sub-0,
+.iplat-menu .open > a.i-sub-2 {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=1, startcolorstr=#2972EC, endcolorstr=#368FFF);
+}
+
+.k-list-scroller .k-list{
+    overflow-x: hidden;
+}
+
+#info-board > .k-tabstrip-items,
+#info > .k-tabstrip-items,
+.i-region-header {
+    background: #FFFFFF;
+}
+
+.i-region-header,
+#info > .k-tabstrip-items .k-item .k-link,
+#info-board > .k-tabstrip-items .k-state-active .k-link,
+.i-theme-ant .k-widget.k-tabstrip ul.k-tabstrip-items .k-state-default .k-link {
+    color: #000000;
+}
+
+#info-board .k-panelbar .k-state-default .k-link,
+.index-links .dropup .dropdown-menu li .link-list a,
+.index-favorite .i-region-content .fav-list .k-item .k-link {
+    color: #787878;
+}
+
+.i-theme-ant .k-tabstrip.k-widget ul.k-tabstrip-items .k-state-active .k-link {
+    color: #FFFFFF;
+}
+
+.aliceblue li:hover p {
+    color: #5ba1ff;
+}
+
+.index-todo {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/待办-BE.png', sizingMethod='scale');
+}
+
+#info-board > .k-tabstrip-items .k-state-active .k-link .index-todo {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/待办-AF.png', sizingMethod='scale');
+}
+
+.index-record {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/已办-BE.png', sizingMethod='scale');
+}
+
+#info-board > .k-tabstrip-items .k-state-active .k-link .index-record {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/已办-AF.png', sizingMethod='scale');
+}
+
+.index-dashboard {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/业务快捷-BE.png', sizingMethod='scale');
+}
+
+/*
+.index-icon-fav {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/收藏-AF.png', sizingMethod='image');
+}
+
+#info .k-state-active .k-link .index-icon-fav {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/收藏-AF.png', sizingMethod='image');
+}
+
+.index-icon-link {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/链接-AF.png', sizingMethod='scale');
+}
+
+#info .k-state-active .k-link .index-icon-link {
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='iplatui/img/index/链接-AF.png', sizingMethod='scale');
+}
+*/
+
+#info > .k-tabstrip-items .k-item {
+    margin-left: 10px;
+}
+
+.headPortrait{
+    float: left!important;
+}
+
+.dropup .dropdown-menu {
+    left: -266px !important;
+}
+
+#side-toggle{
+    display: none;
+}

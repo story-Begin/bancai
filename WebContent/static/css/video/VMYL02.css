@@ -1,0 +1,135 @@
+
+.play {
+    height: 95%;
+    background: white;
+}
+/*视频操作样式*/
+.right-bottom-btn {
+    text-align: center;
+    margin-top: 8px;
+    background-color: #3088f4;
+    height: 24px;
+}
+.rb-btn-continuePlaying{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/continuePlaying.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.rb-btn-stop{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/stop.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.rb-btn-singleScreen{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/singleScreen.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.rb-btn-startRecording{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/startRecording.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.rb-btn-photograph{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/photograph.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 5px;*/
+}
+/*.rb-btn-photograph:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-speed{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/speed.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+.rb-btn-slowDown{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/slowDown.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*下载按钮*/
+.rb-btn-download {
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/download.png) no-repeat transparent;
+    border-style:none;
+    background-size: 20px 20px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 5px;*/
+}
+.rb-btn-emergency{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/emergency.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+}
+.rb-btn-destruction{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/closevideo.png) no-repeat transparent;
+    border-style:none;
+    background-size: 25px 26px;
+    cursor: pointer;
+    margin-top: 7px;
+    /*margin-left: 2px;*/
+}
+/*.rb-btn-emergency:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+.rb-btn-stopRecording{
+    width: 22px;
+    height: 22px;
+    background: url(../../icon/video/pic.png) no-repeat transparent;
+    border-style:none;
+    background-size: 22px 22px;
+    cursor: pointer;
+    margin-top: 7px;
+    margin-left: 5px;
+}
+/*.rb-btn-stopRecording:hover{*/
+/*background-color:#2828f5;*/
+/*}*/
+
+/*.rb-btn-destruction:hover{*/
+/*background-color:#2828f5;*/
+/*}*/

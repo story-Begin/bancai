@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.pz.DeviceOrganizationDao">
+
+    <resultMap id="Base_DeviceOrganization_Map" type="com.baosight.entity.pz.DeviceOrganizationEntity">
+        <result column="id" property="id"/>
+        <result column="data_type" property="dataType"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="fk_organization_parent_id" property="organizationParentId"/>
+        <result column="organization_path" property="organizationPath"/>
+        <result column="organization_path_name" property="organizationPathName"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_DeviceOrganization_Column">
+        id, data_type, organization_name, organization_path, organization_path_name,
+        fk_organization_parent_id, icon, create_time
+    </sql>
+
+    <select id="selectByOrganizationName" resultMap="Base_DeviceOrganization_Map">
+        select
+        <include refid="Base_DeviceOrganization_Column"/>
+        from v_device_organization
+        <where>
+            <if test="organizationParentId != null">
+                fk_organization_parent_id = #{ organizationParentId}
+            </if>
+            <if test="organizationName != null and organizationName != ''">
+                and organization_name like concat('%',#{organizationName},'%')
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <resultMap id="Base_Power_OrganizationDevTree_Map" type="com.baosight.dto.pz.tree.DeviceOrganizationTree">
+        <result column="id" property="id"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="data_type" property="dataType"/>
+        <result column="icon" property="icon"/>
+        <result column="organization_path_name" property="organizationPathName"/>
+        <result column="fk_organization_parent_id" property="organizationParentId"/>
+    </resultMap>
+
+    <select id="selectPowerOrganizationTree" resultMap="Base_Power_OrganizationDevTree_Map">
+        select
+        <include refid="Base_DeviceOrganization_Column"/>
+        from v_device_organization
+        <where>
+            <if test="ids != null">
+                id in
+                <foreach collection="ids" item="id" open="(" close=")" separator=",">
+                    #{id,jdbcType=INTEGER}
+                </foreach>
+            </if>
+        </where>
+        order by create_time asc
+    </select>
+
+    <resultMap id="Base_OrganizationDevTree_Map" type="com.baosight.dto.pz.tree.DeviceOrganizationTree">
+        <result column="id" property="id"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="data_type" property="dataType"/>
+        <result column="icon" property="icon"/>
+        <result column="organization_path_name" property="organizationPathName"/>
+        <collection property="children" ofType="com.baosight.dto.pz.tree.DeviceOrganizationTree">
+            <result column="children_id" property="id"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryChildren" resultMap="Base_OrganizationDevTree_Map">
+        select
+        parent.id, parent.organization_name, parent.data_type, parent.icon,
+        parent.organization_path_name, child.id as children_id
+        from v_device_organization parent
+        left join v_device_organization child on parent.id = child.fk_organization_parent_id
+        <where>
+            <if test="parentId != 0">
+                AND parent.fk_organization_parent_id = #{parentId}
+            </if>
+            <if test="parentId == 0">
+                AND parent.fk_organization_parent_id = 0
+            </if>
+        </where>
+        order by parent.create_time asc
+    </select>
+
+    <resultMap id="Base_OrganizationTree_Map" type="com.baosight.dto.pz.tree.OrganizationTree">
+        <result column="id" property="id"/>
+        <result column="organization_name" property="organizationName"/>
+        <result column="data_type" property="dataType"/>
+        <result column="icon" property="icon"/>
+        <result column="organization_path_name" property="organizationPathName"/>
+        <collection property="children" ofType="com.baosight.dto.pz.tree.DeviceOrganizationTree">
+            <result column="children_id" property="id"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryOrganizationChildren" resultMap="Base_OrganizationTree_Map">
+        select
+        parent.id, parent.organization_name, parent.data_type, parent.icon,
+        parent.organization_path_name, child.id as children_id
+        from v_device_organization parent
+        left join v_device_organization child on parent.id = child.fk_organization_parent_id
+        <where>
+            <if test="parentId != 0">
+                AND parent.fk_organization_parent_id = #{parentId}
+            </if>
+            <if test="parentId == 0">
+                AND parent.fk_organization_parent_id = 0
+            </if>
+        </where>
+        order by parent.create_time asc
+    </select>
+
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from v_device_organization
+        where id in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <select id="selectChildrenNode" resultMap="Base_DeviceOrganization_Map">
+        select
+        id, organization_name
+        from v_device_organization
+        <where>
+            <if test="parentIdList != null and parentIdList.size() > 0">
+                fk_organization_parent_id in
+                <foreach collection="parentIdList" item="id" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>

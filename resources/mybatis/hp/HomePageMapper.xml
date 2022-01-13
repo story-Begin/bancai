@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.hp.HomePageMapper">
+
+    <select id="getAlarmCount" resultType="int">
+        select count(1)
+        from v_device_alarm
+        <where>
+            <if test="level !=null and level !=''">
+                call_police_grade in
+                <foreach collection="level" item="ilevel" open="(" close=")" separator=",">
+                    #{ilevel}
+                </foreach>
+            </if>
+            <if test="status !=null and status !=''">
+                and status =#{status}
+            </if>
+            <if test="createTime !=null">
+                and  DATE_FORMAT(happen_time,'%Y-%m-%d') = DATE_FORMAT(#{createTime},'%Y-%m-%d');
+            </if>
+        </where>
+
+    </select>
+
+    <select id="getCameraCount" parameterType="int" resultType="int">
+        select count(1) from v_ywh_hk_device where ONLINESTATUS = #{status};
+    </select>
+
+    <select id="getCameraInvokeCount" resultType="int">
+        select count(1) from v_thirdparty_operation
+        <where>
+            <if test="sysNo!=null">
+                system_no=#{sysNo}
+            </if>
+            <if test="timeToday !=null and timeToday!=false">
+                and TO_DAYS(quest_time) = TO_DAYS(now())
+            </if>
+            <if test="date !=null">
+                and DATE_FORMAT(quest_time,'%Y-%m-%d %H') = DATE_FORMAT(#{date},'%Y-%m-%d %H');
+            </if>
+        </where>
+    </select>
+
+</mapper>

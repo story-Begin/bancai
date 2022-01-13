@@ -1,0 +1,540 @@
+html, body {
+    height: 100%;
+    color: #FFF;
+    min-height: 540px;
+}
+
+body {
+    font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial,
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 12px;
+    background: url("../../img/login/login-background.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.i-theme-blue .k-icon, .i-theme-blue .i-icon {
+    width: 18px;
+    height: 18px;
+    background-image: url(iplatui/css/common/i-sprite.png) !important;
+    background-size: 360px 360px !important;
+}
+
+.i-theme-blue .css-input,
+.i-theme-blue .i-region .css-input {
+    min-height: 18px;
+    padding-left: 0;
+    margin: 0;
+}
+
+.i-theme-blue .css-input input + span,
+.i-theme-blue .i-region .css-input input + span {
+    margin-right: 0.3125rem;
+}
+
+.i-theme-blue .css-input input:focus + span,
+.i-theme-blue .i-region .css-input input:focus + span {
+    box-shadow: none;
+}
+
+.i-theme-blue .css-input input[type=checkbox]:checked + span,
+.i-theme-blue .i-region .css-input input[type=checkbox]:checked + span {
+    background-position: -162px -144px;
+}
+
+.i-theme-blue .css-input input[type=checkbox] + span,
+.i-theme-blue .i-region .css-input input[type=checkbox] + span {
+    background-position: -162px -126px;
+}
+
+.i-theme-blue .css-input input[type=radio]:checked + span,
+.i-theme-blue .i-region .css-input input[type=radio]:checked + span {
+    background-position: -162px -180px;
+}
+
+.i-theme-blue .css-input input[type=radio] + span,
+.i-theme-blue .i-region .css-input input[type=radio] + span {
+    background-position: -162px -162px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group a {
+    color: white;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: table;
+    min-height: 540px;
+}
+
+.wrapper {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.content.overflow-hidden {
+    margin-top: -100px;
+}
+
+.login-block {
+    padding: 14px 80px 30px;
+    height: 100%;
+    width: 100%;
+    /*border:1px solid red;*/
+    background: url("../../img/login/login-right.png") no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+
+    /*background: rgba(28, 39, 66, 0.56);*/
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+}
+
+.block-content {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.logo {
+    width: 100%;
+    height: 20px;
+    background: url("iplatui/img/logo.png") no-repeat center center;
+}
+
+.form-header {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 25px;
+    height: 20%;
+}
+
+.form-header p {
+    margin-bottom: 0;
+}
+
+.form-header p.text-danger {
+    font-size: 14px;
+    color: #f04134;
+    height: 21px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+.form-input {
+    color: black;
+    font-size: 14px;
+    background: white;
+    width: 100%;
+    height: 40px;
+    padding: 10px 15px;
+    border: 1px solid #FFFFFF;
+    border-radius: 3px;
+    outline: 0;
+    padding-left: 38px;
+}
+
+.user-icon-div {
+    position: relative;
+}
+
+.user-icon {
+    position: absolute;
+    margin-left: 10px;
+    top: 8px;
+    z-index: 5;
+    background: url("../../img/login/username.png") no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.user-icon-div .user-passwd-div .user-kaptcha-div {
+    position: relative;
+}
+
+.user-icon {
+    position: absolute;
+    margin-left: 10px;
+    top: 8px;
+    z-index: 5;
+    background: url("../../img/login/username.png") no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.user-passwd-icon {
+    position: absolute;
+    margin-left: 10px;
+    top: 8px;
+    z-index: 5;
+    background: url("../../img/login/passwd.png") no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.user-kaptcha-icon {
+    position: absolute;
+    margin-left: 10px;
+    top: 8px;
+    z-index: 5;
+    background: url("../../img/login/kaptcha.png") no-repeat;
+    background-position: 0px 0px;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+}
+
+.form-group.password {
+    margin-bottom: 15px;
+}
+
+.form-group.remember {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.form-group.log-in {
+    margin-bottom: 0;
+}
+
+.login-btn {
+    font-size: 15px;
+    height: 40px;
+    width: 100%;
+    background: #2B6DCB;
+    border: 0;
+    border-radius: 2px;
+}
+
+/*rgb(28, 39, 66)*/
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+}
+
+::-moz-placeholder {
+    color: #FFF;
+    font-size: 14px;
+}
+
+::-webkit-input-placeholder {
+    color: #FFF;
+    font-size: 14px;
+}
+
+:-ms-input-placeholder {
+    color: #FFF;
+    font-size: 14px;
+}
+
+/*浏览器文字信息*/
+.info {
+    position: absolute;
+    bottom: 13px;
+    left: 0;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.browser-warning, .phone-number, .copyright-info {
+    text-align: center;
+    font-size: 12px;
+    line-height: 17px;
+    color: #FFFFFF;
+    opacity: 0.6;
+}
+
+.browser-warning a, .browser-warning a:active {
+    color: #FFE06A;
+    text-decoration: underline;
+}
+
+.browser-warning a:hover {
+    color: #FFEA9C;
+}
+
+.browser-warning a:focus {
+    color: #FFF0B6;
+}
+
+.phone-number {
+    margin-top: 10px;
+}
+
+.copyright-info {
+    margin-top: 14px;
+}
+
+/*版本信息警告窗口*/
+.warning-window {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 10003;
+}
+
+.i-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10002;
+    top: 0;
+    left: 0;
+    background: #000000;
+    opacity: 0.5;
+    display: none;
+}
+
+.i-region-header {
+    border-radius: 2px 2px 0 0;
+    line-height: 20px;
+    font-size: 13px;
+    padding: 5px 16px 3px 20px;
+    background: linear-gradient(to right, #1F65DA 0%, #368FFF 100%);
+    color: #FFFFFF;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+
+}
+
+.i-region-content {
+    height: 100%;
+    margin: 28px 0 0 0;
+    background: #FFFFFF;
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.warning-msg {
+    font-size: 20px;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+    letter-spacing: 1px;
+    color: #4C5569;
+    display: block;
+    padding-top: 30px;
+    height: 100%;
+}
+
+.browser-icon {
+    margin-top: 29px;
+    height: 101px;
+}
+
+.ie-icon {
+    height: 101px;
+    width: 104px;
+    background-image: url("iplatui/img/icon_ie.png");
+    display: inline-block;
+}
+
+.chrome-icon {
+    height: 101px;
+    width: 101px;
+    background-image: url("iplatui/img/icon_chrome.png");
+    display: inline-block;
+}
+
+.browser-name {
+    margin-top: 20px;
+    height: 25px;
+    text-align: center;
+}
+
+.ie-name, .chrome-name {
+    display: block;
+    font-size: 18px;
+    color: #555555;
+}
+
+.download-browser {
+    margin-top: 20px;
+    height: 30px;
+}
+
+.download-btn {
+    background: #2F80ED;
+    border-width: 0;
+    border-image: none;
+    border-radius: 2px;
+    padding: 9px 16px;
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 12px;
+}
+
+.download-btn:hover {
+    background-color: #3088F4;
+    opacity: 0.8;
+}
+.download-btn:active {
+    background-color: #2B76DB;
+    opacity: 1;
+}
+
+.i-close {
+    background-position: -108px -144px;
+    float: right;
+    cursor: pointer;
+}
+
+.footer-right {
+    height: 68px;
+}
+
+.footer-logo {
+    display: inline-block;
+    vertical-align: top;
+    height: 68px;
+    padding: 9px 28px;
+    margin-right: 20px;
+    background: rgba(49, 51, 74, 0.5);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -1px 0 rgba(0,0,0,0.3);
+}
+
+.footer-logo img {
+    cursor: pointer;
+}
+
+.i-theme-ant {
+    background: url("../../img/login/login-background.png") no-repeat;
+    background-size: 100% 100%;
+}
+.i-theme-ant .wrapper .content {
+    height: 70%;
+    margin-top: 0;
+    min-height: 375px;
+}
+.i-theme-ant .wrapper .content .row {
+    height: 100%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 {
+    background: white ;
+    border-radius: 28px;
+    padding: 0;
+    height: 100%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    max-width: 100%;
+    min-width: 400px;
+    /*border-radius: 28px;*/
+    background-color: white;
+}
+.login-left {
+    /*height: 98%;*/
+    /*float:left;*/
+    /*margin-left: 18%;*/
+    /*width: 38%;*/
+
+    height: 100%;
+    width: 60%;
+    background: url("../../img/login/login-left.png") no-repeat;
+    background-size: 100% 100%;
+    float:left;
+}
+
+.login-left-img {
+    height: 100%;
+    width: 98%;
+    margin-left:20px;
+    background: url("../../img/login/login-left.png") no-repeat;
+    background-size: 100% 100%;
+
+    /*//contain cover*/
+    /*overflow: hidden;*/
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-header {
+    color: #001F6B;
+    /*width: 100%;*/
+    font-size: 28px;
+    font-family: Alibaba PuHuiTi;
+    height: 30%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-header .logo {
+    width: 20%;
+    height: 30%;
+    margin-left: -20px;
+    background: url("iplatui/img/login/login-logo.png") no-repeat;
+    background-size: 100% 100%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-header p {
+    margin-left: 58%;
+}
+
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal {
+    width: 100%;
+    margin-left: 50%;
+    height: 50%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal .form-group {
+    height: 18%;
+    min-height: 40px;
+    margin-left: 12%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal .form-group div {
+    height: 100%;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal .form-input {
+    border-radius: 4px;
+    height: 100%;
+    /*background: rgba(28, 29, 35, 0.04);*/
+    font-size: 16px!important;
+    font-family: Alibaba;
+    color: rgba(0, 0, 0, 0.65);
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal .remember a {
+    font-size: 16px;
+    font-family: Alibaba;
+    color: #1985E8;
+}
+.i-theme-ant .wrapper .content .row .col-md-6 .login-block .form-horizontal .login-btn {
+    background-color: #1985e8;
+    font-size: 18px;
+    border-radius: 4px;
+    height: 100%;
+    min-height: 40px;
+    letter-spacing: 5px;
+    padding-left: 10px;
+    text-align: center;
+}
+input::-webkit-input-placeholder {
+    /* WebKit browsers 适配谷歌 */
+    color: rgba(0, 0, 0, 0.65);
+}
+input:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 适配火狐 */
+    color: rgba(0, 0, 0, 0.65);
+}
+input::-moz-placeholder {
+    /* Mozilla Firefox 19+ 适配火狐 */
+    color: rgba(0, 0, 0, 0.65);
+}
+input:-ms-input-placeholder {
+    /* Internet Explorer 10+  适配ie*/
+    color: rgba(0, 0, 0, 0.65);
+}

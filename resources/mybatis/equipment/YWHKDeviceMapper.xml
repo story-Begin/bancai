@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baosight.mapper.equipment.YWHKDeviceDao">
+
+    <resultMap id="Base_YWHKDevice_Map" type="com.baosight.entity.equipment.YWHKDeviceEntity">
+        <result column="id" property="id"/>
+        <result column="CAMERAINDEXCODE" property="cameraIndexCode"/>
+        <result column="CAMERAUUID" property="cameraUuid"/>
+        <result column="CAMERANAME" property="cameraName"/>
+        <result column="CAMERATYPE" property="cameraType"/>
+        <result column="CAMERACHANNELNUM" property="channelNo"/>
+        <result column="SMARTTYPE" property="smartType"/>
+        <result column="SMARTSUPPORT" property="smartSupport"/>
+        <result column="ONLINESTATUS" property="onLineStatus"/>
+        <result column="KEYBOARDCODE" property="keyBoardCode"/>
+        <result column="ORDERNUM" property="orderNum"/>
+        <result column="UPDATETIME" property="updateTime"/>
+        <result column="UNITUUID" property="unitUuid"/>
+        <result column="REGIONUUID" property="regionUuid"/>
+        <result column="ENCODERUUID" property="encoderUuid"/>
+        <result column="RESAUTHS" property="resauths"/>
+        <result column="GBINDEXCODE" property="gbIndexCode"/>
+        <result column="NETZONE" property="netZone"/>
+        <result column="NETZONECODE" property="netZoneCode"/>
+        <result column="FK_ORGID" property="orgId"/>
+        <result column="CREATETIME" property="createTime"/>
+        <result column="REMARK" property="remark"/>
+        <result column="PARENTID" property="parentId"/>
+        <result column="ORGPATH" property="orgPath"/>
+    </resultMap>
+
+    <sql id="Base_YWHKDevice_Column">
+        id, CAMERAINDEXCODE, CAMERAUUID, CAMERANAME, CAMERATYPE, CAMERACHANNELNUM, SMARTTYPE, SMARTSUPPORT, ONLINESTATUS,
+        KEYBOARDCODE, ORDERNUM, UPDATETIME, UNITUUID, REGIONUUID, ENCODERUUID, RESAUTHS, GBINDEXCODE, NETZONE, NETZONECODE,
+        CREATETIME, REMARK, FK_ORGID, PARENTID, ORGPATH
+    </sql>
+
+    <select id="findPageList" resultMap="Base_YWHKDevice_Map">
+        SELECT
+        <include refid="Base_YWHKDevice_Column"/>
+        FROM v_ywh_hk_device
+        <where>
+            <if test="deviceOrganizationId != null">
+                and FK_ORGID = #{deviceOrganizationId}
+            </if>
+            <if test="deviceOrganizationIds != null and deviceOrganizationIds.size() > 0">
+                and FK_ORGID in
+                <foreach collection="deviceOrganizationIds" item="deviceOrganizationId" open="(" close=")"
+                         separator=",">
+                    #{deviceOrganizationId}
+                </foreach>
+            </if>
+            <if test="idList != null and idList.size > 0">
+                and id in
+                <foreach collection="idList" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="userGroupList != null and userGroupList.size > 0">
+                and id not in
+                <foreach collection="userGroupList" item="id" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+            <if test="cameraName != null and cameraName != ''">
+                and CAMERANAME like concat('%', #{cameraName}, '%')
+            </if>
+        </where>
+        order by CREATETIME desc
+    </select>
+
+    <delete id="deleteBatch" parameterType="java.util.List">
+        delete from v_ywh_hk_device
+        where id in
+        <foreach collection="idList" item="o" open="(" separator="," close=")">
+            #{o, jdbcType=INTEGER}
+        </foreach>
+    </delete>
+
+    <select id="selectByOrganizationId" resultMap="Base_YWHKDevice_Map">
+        select
+        <include refid="Base_YWHKDevice_Column"/>
+        from v_ywh_hk_device
+        <where>
+            <if test="organizationIdList != null and organizationIdList.size() > 0">
+                FK_ORGID in
+                <foreach collection="organizationIdList" item="id" index="index" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+        order by CAMERANAME asc
+    </select>
+
+    <select id="selectDevOrganization" resultMap="Base_YWHKDevice_Map">
+        select
+        <include refid="Base_YWHKDevice_Column"/>
+        from v_ywh_hk_device
+        <where>
+            <if test="deviceOrganizationId != null">
+                and FK_ORGID = #{deviceOrganizationId}
+            </if>
+            <if test="cameraName != null and cameraName != ''">
+                and CAMERANAME like concat('%',#{cameraName},'%')
+            </if>
+            <if test="cameraType != null and cameraType != ''">
+                and CAMERATYPE = #{cameraType}
+            </if>
+        </where>
+        order by CREATETIME desc
+    </select>
+
+    <update id="updateBatch">
+        update v_ywh_hk_device
+        <set>
+            FK_ORGID = #{deviceOrganizationId},
+            ORGPATH = #{organizationPathNamePath}
+        </set>
+        <where>
+            id in
+            <foreach collection="cameraDataIdList" item="id" index="index" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+
+    <select id="authorityCameraData" resultMap="Base_YWHKDevice_Map">
+        select
+        vcd.id, vcd.CAMERAINDEXCODE, vcd.CAMERAUUID, vcd.CAMERANAME, vcd.CAMERATYPE, vcd.GBINDEXCODE, vcd.FK_ORGID, vcd.ONLINESTATUS
+        from v_ywh_hk_device vcd
+        left join v_user_group_device vd on vd.fk_device_id = vcd.id
+        <where>
+            <if test="userGroupIds != null and userGroupIds.size() > 0">
+                vd.fk_user_group_id in
+                <foreach collection="userGroupIds" item="userGroupId" open="(" close=")" separator=",">
+                    #{userGroupId}
+                </foreach>
+            </if>
+        </where>
+        order by vcd.CAMERANAME asc
+    </select>
+
+    <select id="selectCameraDataAll" resultMap="Base_YWHKDevice_Map">
+        select id, GBINDEXCODE from v_ywh_hk_device order by CREATETIME desc
+    </select>
+
+    <select id="countCameraData" resultType="int">
+        select count(id) from  v_ywh_hk_device
+    </select>
+
+    <update id="updateBatchCameraData">
+        <foreach collection="cameraDataEntities" item="item" index="index" separator=";">
+            UPDATE v_ywh_hk_device
+            <set>
+                <if test="item.channelNo != null">
+                    CAMERACHANNELNUM = #{item.channelNo},
+                </if>
+                <if test="item.onLineStatus != null">
+                    ONLINESTATUS = #{item.onLineStatus},
+                </if>
+                <if test="item.gbIndexCode != null">
+                    GBINDEXCODE = #{item.gbIndexCode},
+                </if>
+            </set>
+            WHERE CAMERAINDEXCODE = #{item.cameraIndexCode}
+        </foreach>
+    </update>
+
+    <select id="getDeviceList" resultMap="Base_YWHKDevice_Map">
+        SELECT
+        ug.id, ca.CAMERAUUID, ca.CAMERANAME, ca.CAMERATYPE, ca.GBINDEXCODE, ca.CREATETIME
+        FROM v_user_group_device ug
+        left join v_ywh_hk_device ca on ug.fk_device_id = ca.id
+        <where>
+            <if test="id != null">
+                ug.fk_user_group_id = #{id}
+            </if>
+            <if test="mDeviceName != null and mDeviceName != ''">
+                AND ca.CAMERANAME like concat('%',#{mDeviceName},'%')
+            </if>
+        </where>
+        order by ca.CREATETIME desc
+    </select>
+
+</mapper>
